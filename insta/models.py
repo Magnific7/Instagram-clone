@@ -21,7 +21,8 @@ class Image(models.Model):
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.IntegerField(default =0)
     comments = models.TextField(blank=True)
-
+    pub_date = models.DateTimeField(auto_now_add=True)
+    
     class Meta:
         ordering = ['image_name']
 
@@ -30,3 +31,7 @@ class Image(models.Model):
     
     def save_image(self):
         self.save()
+    @classmethod
+    def delete_image(cls, id):
+        pic = cls.objects.filter(pk=id)
+        pic.delete()
