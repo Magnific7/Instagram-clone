@@ -13,16 +13,23 @@ class Profile(models.Model):
     
     def save_profile(self):
         self.save()
+       
+    def delete_profile(cls, id):
+        self.delete()
+
+    def update_profile(self,update):
+        self.bio = update
+        self.save()
 
 class Image(models.Model):
     image = models.ImageField(upload_to ='pictures/', )
     image_name = models.CharField(max_length =50)
     image_caption = models.TextField()
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
-    likes = models.IntegerField(default =0)
+    likes = models.IntegerField(default =True, null=True, blank=True)
     comments = models.TextField(blank=True)
     pub_date = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
         ordering = ['image_name']
 
@@ -35,3 +42,16 @@ class Image(models.Model):
     def delete_image(cls, id):
         pic = cls.objects.filter(pk=id)
         pic.delete()
+    
+    @classmethod
+    def update_image(self,update):
+        self.image_caption = update
+        self.save()
+        
+class Comment(models.Model):
+    class Meta:
+        db_table = 'comments'
+
+    comment_content = models.CharField(max_length =80)
+    image = models.ForeignKey(Image)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
