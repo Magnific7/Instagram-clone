@@ -22,5 +22,6 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'',include('insta.urls'))
+    url(r'',include('insta.urls')),
+    url(r'^accounts/', include('registration.backends.simple.urls'))
 ]

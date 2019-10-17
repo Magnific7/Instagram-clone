@@ -1,9 +1,11 @@
 config==0.3.9
+confusable-homoglyphs==3.2.0
 dj-database-url==0.5.0
 Django==1.11.23
 django-bootstrap-modal-forms==1.4.4
 django-bootstrap3==11.1.0
 django-heroku==0.3.1
+django-registration==2.4.1
 gunicorn==19.9.0
 Pillow==6.2.0
 psycopg2==2.8.3
