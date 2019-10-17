@@ -12,3 +12,12 @@ class Image(models.Model):
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.IntegerField(default =0)
     comments = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ['image_name']
+
+    def __str__(self):
+        return self.image_name
+    
+    def save_image(self):
+        self.save()
