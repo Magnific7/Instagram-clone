@@ -48,3 +48,12 @@ class Image(models.Model):
         self.image_caption = update
         self.save()
         
+    @classmethod
+    def show_by_user(cls, user):
+        images = cls.objects.filter(user = user)
+        return images
+
+    @classmethod
+    def display_images(cls, id):
+        images = cls.objects.get(id=id)
+        return images
