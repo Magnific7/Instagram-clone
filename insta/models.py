@@ -21,6 +21,11 @@ class Profile(models.Model):
         self.bio = update
         self.save()
 
+    @classmethod
+    def search_by_user(cls,search_term):
+        user = cls.objects.filter(user__username__icontains=search_term)
+        return user
+
 class Image(models.Model):
     image = models.ImageField(upload_to ='pictures/', )
     image_name = models.CharField(max_length =50)
@@ -29,7 +34,6 @@ class Image(models.Model):
     likes = models.IntegerField(default=0)
     comments = models.TextField(blank=True)
     pub_date = models.DateTimeField(auto_now_add=True)
-
     class Meta:
         ordering = ['image_name']
 
@@ -38,6 +42,7 @@ class Image(models.Model):
     
     def save_image(self):
         self.save()
+    
     @classmethod
     def delete_image(cls, id):
         pic = cls.objects.filter(pk=id)
@@ -47,11 +52,6 @@ class Image(models.Model):
     def update_image(self,update):
         self.image_caption = update
         self.save()
-        
-    @classmethod
-    def show_by_user(cls, user):
-        images = cls.objects.filter(user = user)
-        return images
 
     @classmethod
     def display_images(cls, id):
