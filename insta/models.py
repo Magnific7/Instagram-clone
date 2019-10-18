@@ -48,10 +48,3 @@ class Image(models.Model):
         self.image_caption = update
         self.save()
         
-class Comment(models.Model):
-    class Meta:
-        db_table = 'comments'
-
-    comment_content = models.CharField(max_length =80)
-    image = models.ForeignKey(Image)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
