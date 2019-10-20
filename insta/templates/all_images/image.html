@@ -13,7 +13,9 @@
    </div>
 
    <div class="row">
-     <p>{{image.image_caption}}</p>
+      {% autoescape on %}
+     <p>{{image.image_caption| safe}}</p>
+     {% endautoescape %}
    </div>
 
    <div class="row">

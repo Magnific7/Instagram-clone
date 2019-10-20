@@ -57,3 +57,8 @@ class Image(models.Model):
     def display_images(cls, id):
         images = cls.objects.get(id=id)
         return images
+    
+    @classmethod
+    def display_user_images(cls):
+        images = cls.objects.filter()
+        return images

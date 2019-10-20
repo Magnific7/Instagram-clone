@@ -8,7 +8,29 @@
 <body>
         <ul class="nav nav-tabs">
                 <li role="presentation" class="active"><a href="{% url 'home'%}">Home</a></li>
-                
+          {% if user.is_authenticated %}
+                <li>
+                  <a href="/accounts/password/change">Change Password</a>
+                </li>
+                <li>
+                  <a href="/logout">Logout</a>
+                </li>
+                <li>
+                    <a href="{%url 'profile'%}">Profile</a>
+                  </li>
+                <li>
+                  <a href="{%url 'new-image'%}">New Post</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          {% else %}
+          <li>
+            <a class='btn btn-default' href="/accounts/login">Login</a>
+          </li>
+
+          {% endif %}
+        </div>
               </ul>
               <div class="col-sm-4 col-md-4 navbar-right">
 
@@ -22,5 +44,6 @@
 
         </form>
       </div>
+
 </body>
 </html>

@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.contrib.auth.models import User
 from .models import Image,Profile
+from .forms import NewImageForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -24,3 +27,22 @@ def image(request,image_id):
     except DoesNotExist:
         raise Http404()
     return render(request,"all-news/image.html", {"image":image})
+
+@login_required(login_url='/accounts/login/')
+def new_image(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+        return redirect('home')
+
+    else:
+        form = NewImageForm()
+    return render(request, 'registration/new_image.html', {"form": form})
+
+def profile(request):
+    profile = Image.display_user_images()
+    return render(request, 'new_image.html', {"profile": profile})
