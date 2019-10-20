@@ -6,6 +6,7 @@ from .forms import NewImageForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def home(request):
     images = Image.objects.all()
     return render(request, 'all_images/home.html', {"images":images})
@@ -41,7 +42,7 @@ def new_image(request):
 
     else:
         form = NewImageForm()
-    return render(request, 'registration/new_image.html', {"form": form})
+    return render(request, 'new_image.html', {"form": form})
 
 def profile(request):
     profile = Image.display_user_images()
