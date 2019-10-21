@@ -1,26 +1,26 @@
 {%extends 'all_images/base.html'%}
 {% block content %} 
 {{ block.super}}
-
+<div class="w3-card-6" style="width:56%">
         <div class='container'>
-
-                <h2 class='card'>Here you go</h2>
                 </div> 
                 <div>
                         {% for image in images %}
-                                <p>{{image.image_name}}</p>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                        <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive" alt="Image"></a>
+                                
+                                <div class="col-md-5">
+                                        <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive" alt="Image" style="width:100%;margin-left: 0%;margin-top:15px; "></a>
                                       </div>
 
-                                {% for comment in image.comment_set.all%}
-                                        <p>{{comment.comment}}</p>
-                                {% endfor%}
-                                <a href="{% url 'comment' image.id %}">comment</a>
+                               
+                                
                         {% empty %}
                                 <div class="row">
                                 <h2 class="text-center">There Are No Images</h2>
                                 </div>
                         {% endfor %}
-                </div> 
+                        {% for comment in comments%}
+                        <p>comments:{{comment.comment}}</p>
+                {% endfor%}
+                </div>
+</div> 
 {% endblock %}

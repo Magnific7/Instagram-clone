@@ -9,12 +9,12 @@
    </div>
 
    <div class="row">
-     <h1 class="text-center">{{image.image_name}}</h1>
+     <p>name:{{image.image_name}}</p>
    </div>
 
    <div class="row">
       {% autoescape on %}
-     <p>{{image.image_caption| safe}}</p>
+     <p>caption:{{image.image_caption| safe}}</p>
      {% endautoescape %}
    </div>
 
@@ -24,6 +24,7 @@
       {% for com in comments %}
       <p>{{com.comment}}</p>
       {% endfor %}
+      <a href="{% url 'comment' image.id %}">add a comment</a>
  </div>
 
  {% endblock %}

@@ -7,23 +7,22 @@
 </head>
 <body>
         <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="{% url 'home'%}">Home</a></li>
-          {% if user.is_authenticated %}
+                <li role="presentation" class="active"><a href="{% url 'home'%}"><img src="../../static/images/instagramicon.jpg" alt="instagram logo on nav-bar " style="width:53px; height:30px;margin-top:5px;margin-left:26px;border-right:1px solid;padding-right: 23px; "></a></li>
+                <li><a href="/">
+                  <img src="../../static/images/instalogo.svg" alt="Instagram name on nav-bar " style="width:120px; height:30px; margin-left: 50px;">
+              </a></li>
+                {% if user.is_authenticated %}
+                
+                
                 <li>
-                  <a href="/accounts/password/change">Change Password</a>
+                  <a href="{% url 'new-image'%}"><img src="../../static/images/up.png" alt="instagram logo on nav-bar " style="width:53px; height:30px;margin-top:5px;margin-left:26px;border-right:1px solid;padding-right: 23px; "></a>
                 </li>
                 <li>
-                  <a href="/logout">Logout</a>
-                </li>
-                <li>
-                  <a href="{% url 'update_profile'%}">Add Profile</a>
-                </li>
-                <li>
-                    <a href="{%url 'profile' user.id %}">Profile</a>
+                    <a href="{%url 'profile' user.id %}"><img src="../../static/images/profile.png" alt="instagram logo on nav-bar " style="width:53px; height:30px;margin-top:5px;margin-left:26px;border-right:1px solid;padding-right: 23px; "></a>
                   </li>
-                <li>
-                  <a href="{%url 'new-image'%}">New Post</a>
-                </li>
+                  <li>
+                    <a href="/logout">Logout</a>
+                  </li>
               </ul>
             </li>
           </ul>
