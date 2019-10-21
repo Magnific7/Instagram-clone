@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.contrib.auth.models import User
 from .models import Image,Profile
-from .forms import NewImageForm
+from .forms import NewImageForm, UpdatebioForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -38,12 +38,36 @@ def new_image(request):
             image = form.save(commit=False)
             image.user = current_user
             image.save()
-        return redirect('home')
+        return render(request, 'home.html', {'image':image})
 
     else:
         form = NewImageForm()
     return render(request, 'new_image.html', {"form": form})
 
-def profile(request):
-    profile = Image.display_user_images()
-    return render(request, 'new_image.html', {"profile": profile})
+@login_required(login_url='/accounts/login/')
+def update_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = UpdatebioForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+        return redirect('home')
+
+    else:
+        form = UpdatebioForm()
+    return render(request, 'registration/update_profile.html', {"form": form})
+
+@login_required(login_url='/accounts/login/')
+def profile(request, username=None):
+    if not username:
+        username = request.user.username
+    user_images = Image.objects.filter(user_id=username)
+    # profilee = Profile.objects.filter(user=current_user).first()
+
+    return render(request, 'profile.html', {"user_images": user_images})
+
+
+    #adding image ,boostrap form in new_image, profile, login add registration link
+

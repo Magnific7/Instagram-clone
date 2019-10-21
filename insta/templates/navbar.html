@@ -16,7 +16,10 @@
                   <a href="/logout">Logout</a>
                 </li>
                 <li>
-                    <a href="{%url 'profile'%}">Profile</a>
+                  <a href="{% url 'update_profile'%}">Add Profile</a>
+                </li>
+                <li>
+                    <a href="{%url 'profile' user.id %}">Profile</a>
                   </li>
                 <li>
                   <a href="{%url 'new-image'%}">New Post</a>
