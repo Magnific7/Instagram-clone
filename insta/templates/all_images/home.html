@@ -10,10 +10,13 @@
                         {% for image in images %}
                                 <p>{{image.image_name}}</p>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                        <img src="{{image.image.url}}" class="img-responsive" alt="Image">
+                                        <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive" alt="Image"></a>
                                       </div>
 
-
+                                {% for comment in image.comment_set.all%}
+                                        <p>{{comment.comment}}</p>
+                                {% endfor%}
+                                <a href="{% url 'comment' image.id %}">comment</a>
                         {% empty %}
                                 <div class="row">
                                 <h2 class="text-center">There Are No Images</h2>

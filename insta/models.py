@@ -26,17 +26,29 @@ class Profile(models.Model):
         user = cls.objects.filter(user__username__icontains=search_term)
         return user
 
+
+    # def get_comments(self, id):
+    #     comments = Comments.objects.filter(image_id = id)
+    #     return comments
+class Follow(models.Model):
+    following = models.ForeignKey(User, related_name='following')
+    follower = models.ForeignKey(User, related_name='follower')
+
+    def __str__(self):
+        return '{} follows {}'.format(self.following,self.follower)
+
+User.add_to_class('followings',models.ManyToManyField('self',through=Follow,related_name='followers',symmetrical=False))
+
+
 class Image(models.Model):
+    class Meta:
+        db_table = 'image'
     image = models.ImageField(upload_to ='pictures/', )
     image_name = models.CharField(max_length =50)
     image_caption = models.TextField()
     profile = models.ForeignKey(Profile)
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank =True)
-    likes = models.IntegerField(default=0)
-    comments = models.TextField(blank=True)
     pub_date = models.DateTimeField(auto_now_add=True)
-    class Meta:
-        ordering = ['image_name']
 
     def __str__(self):
         return self.image_name
@@ -44,6 +56,11 @@ class Image(models.Model):
     def save_image(self):
         self.save()
     
+    @classmethod
+    def get_all_images(cls):
+        images = cls.objects.all().prefetch_related('comment_set')
+        return images
+
     @classmethod
     def delete_image(cls, id):
         pic = cls.objects.filter(pk=id)
@@ -63,3 +80,22 @@ class Image(models.Model):
     def display_user_images(cls):
         images = cls.objects.filter()
         return images
+
+class Comments(models.Model):
+    class Meta:
+        db_table = 'comments'
+    comment = models.CharField(max_length=20,null=True)
+    comment_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name="comment_img")
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+
+    def __str__(self):
+        return self.user
+
+
+class Likes(models.Model):
+    user = models.ForeignKey(User)
+    like = models.IntegerField(default=0)
+    image_likes = models.ForeignKey(Image)
+
+    def save_likes(self):
+        self.save()

@@ -16,8 +16,7 @@
   {% if users %}
     {% for user in users %}
       <div class="col-sm-6 col-md-3">
-          <h1>{{user.user.username}}</h1>
-          
+          <h3><a href="{% url 'profile' user.id %}">{{user.user.username}}</a></h3>
       </div>
     {% endfor %}
   {% endif %}
