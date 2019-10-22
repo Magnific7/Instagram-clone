@@ -47,8 +47,10 @@ class Image(models.Model):
     image_name = models.CharField(max_length =50)
     image_caption = models.TextField()
     profile = models.ForeignKey(Profile)
+    like = models.IntegerField(default=0)
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank =True)
     pub_date = models.DateTimeField(auto_now_add=True)
+    comment = models.CharField(max_length=20,null=True)
 
     def __str__(self):
         return self.image_name
@@ -80,6 +82,11 @@ class Image(models.Model):
     def display_user_images(cls):
         images = cls.objects.filter()
         return images
+    
+    @classmethod
+    def get_images(cls):
+        images = cls.objects.all().prefetch_related('comment_set')
+        return images
 
 class Comments(models.Model):
     class Meta:
@@ -92,10 +99,3 @@ class Comments(models.Model):
         return self.user
 
 
-class Likes(models.Model):
-    user = models.ForeignKey(User)
-    like = models.IntegerField(default=0)
-    image_likes = models.ForeignKey(Image)
-
-    def save_likes(self):
-        self.save()

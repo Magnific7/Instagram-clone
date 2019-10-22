@@ -10,11 +10,16 @@
                         <div class="card mb-3">
                                         <a href="{% url 'profile' image.user.id %}"><h3 class="card-header">{{image.user.username}}</h3></a>
                                         <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive  card-body" alt="Image" style="width:100%;margin-left: 0%;margin-top:15px;"></a>
-                                     
+                                        <a href="{% url 'like' image.id %}">{{image.likes}}<i class="fa fa-heart" style="color:rgb(165, 58, 58);"></i></a>
                         </div>
-                                {% for comment in image.comment_set.all%}
-                                        <p>{{comment.comment}}</p>
-                                {% endfor%}
+                        <a href="{% url 'comment' image.id%}" ><img src="https://www.trzcacak.rs/myfile/detail/157-1577286_circular-speech-bubble-outline-comments-instagram-comment-logo.png(65 kB)
+                                https://www.trzcacak.rs/myfile/detail/157-1577286_circular-speech-bubble-outline-comments-instagram-comment-logo.png
+                                " style="margin-left:3%;margin-top:0.5%;position:absolute"width=25></a>
+
+                        {% for com in i.comment_set.all %}
+                        <span><p><strong>{{current_user.username}}:</strong>{{com.comment}}</p></span>
+                      </div>
+                       {% endfor %}
                                 
                         {% empty %}
                                 <div class="row">

@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/accounts/login/')
 def home(request):
     images = Image.objects.all()
+    image_comments = Image.get_images()
     return render(request, 'all_images/home.html', {"images":images})
 
 def search_results(request):
@@ -114,3 +115,17 @@ def comment(request,image_id):
     else:
         form=CommentForm()
     return render(request,'all_images/comment.html',{'form':form,'image_id':image_id})
+    
+def comment_show(request,image_id):
+    try:
+        comment =Comment.objects.get(id =image.id)
+    except:
+        raise Http404()
+        returnrender(request,'home.html',{"comment":comment})
+
+def likes(request,id):
+    likes=1
+    image = Image.objects.get(id=id)
+    image.likes = image.likes+1
+    image.save()    
+    return redirect("/")
