@@ -5,12 +5,13 @@
         <div class='container'>
                
                 <div class="row">
-                        <div class="w3-card-6" style="width:56%;margin-left: 30%">
+                        <div class="card" style="width:56%;margin-left: 30%">
                         {% for image in images %}
-                                
-                                        <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive" alt="Image" style="width:100%;margin-left: 0%;margin-top:15px;"></a>
+                        <div class="card mb-3">
+                                        <a href="{% url 'profile' image.user.id %}"><h3 class="card-header">{{image.user.username}}</h3></a>
+                                        <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive  card-body" alt="Image" style="width:100%;margin-left: 0%;margin-top:15px;"></a>
                                      
-
+                        </div>
                                 {% for comment in image.comment_set.all%}
                                         <p>{{comment.comment}}</p>
                                 {% endfor%}
