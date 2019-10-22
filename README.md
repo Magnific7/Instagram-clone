@@ -21,3 +21,9 @@ Admin should:
 * Create new images for showcasing
 * Delete images
 * Update image post details.
+
+## Specifications
+| Behaviour | Input | Output |
+| :---------------- | :---------------: | ------------------: |
+| Admin Authentication | **/admin/** | Access Admin dashboard |
+| Display all images | **the gallery** | Clickable links to open any images page |
