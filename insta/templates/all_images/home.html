@@ -10,7 +10,7 @@
                         <div class="card mb-3">
                                         <a href="{% url 'profile' image.user.id %}"><h5 class="card-header">{{image.user.username}}</h5></a>
                                         <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive  card-body" alt="Image" style="width:100%;margin-left: 0%;margin-top:15px;"></a>
-                                       
+                                        <!-- <a href="{% url 'like' image.id %}">{{image.likes}}<i class="fa fa-heart" style="color:rgb(165, 58, 58);"></i></a> -->
                         </div>
                         
                         {% for com in i.comment_set.all %}

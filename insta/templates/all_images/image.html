@@ -6,9 +6,14 @@
 
    <div class="row">
      
-     <img src="{{image.image.url}}"  class="img-responsive" alt="">
-     <a href="{% url 'like' image.id %}">likes:{{image.like}}<i class="fa fa-heart" style="color:rgb(165, 58, 58);"></i></a>
+     <img src="{{image.image.url}}"  class="img-responsive" alt="" style="width:100%;margin-left: 0%;margin-top:15px;">
+<div style="display:flex">
+    <a href="{% url 'comment' image.id%}" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQt2iNiNmbM4n2qcUJUOZr2C-dI-EDvT_c3yLH-E6h2jk6wVqoY
+      " style="margin-left:20%;margin-top:0.5%;position:absolute"width=25></a>
+
+ <a href="{% url 'like' image.id %}"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR4_zX0jPFV2nDzCOIJdm1roMOLb7yEjXaTtx9OI3zNVjxTUC87" alt="instagram logo on nav-bar " style="width:53px; height:30px;margin-top:5px;margin-left:26px;border-right:1px solid;padding-right: 23px; ">{{image.like}}</a>
    </div>
+  </div>
    <h3>username;<a href="{% url 'profile' image.user.id %}">{{image.user.username}}</a></h3>
    <div class="row">
      <p>name:{{image.image_name}}</p>
@@ -23,13 +28,14 @@
    <div class="row">
      <p>Posted {{image.pub_date|timesince}} by {{image.profile.user.username}}</p>
    </div>
-   <div class="card">     
+   <div class="card"> 
+     <h4>Comments</h4>    
       {% for com in comments %}
       <li>{{com.comment}}</li>
       {% endfor %}
     </div>
 
-      <a href="{% url 'comment' image.id %}">add a comment</a>
+      
  </div>
 
  {% endblock %}
