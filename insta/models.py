@@ -48,9 +48,9 @@ class Image(models.Model):
     image_caption = models.TextField()
     profile = models.ForeignKey(Profile)
     like = models.IntegerField(default=0)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank =True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank =True)
     pub_date = models.DateTimeField(auto_now_add=True)
-    comment = models.CharField(max_length=20,null=True)
+    comment = models.CharField(max_length=80,null=True)
 
     def __str__(self):
         return self.image_name
@@ -96,6 +96,6 @@ class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
 
     def __str__(self):
-        return self.user
+        return self.comment
 
 

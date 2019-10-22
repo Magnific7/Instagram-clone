@@ -22,9 +22,12 @@
    <div class="row">
      <p>Posted {{image.pub_date|timesince}} by {{image.profile.user.username}}</p>
    </div>
+   <div class="card">     
       {% for com in comments %}
-      <p>{{com.comment}}</p>
+      <li>{{com.comment}}</li>
       {% endfor %}
+    </div>
+
       <a href="{% url 'comment' image.id %}">add a comment</a>
  </div>
 

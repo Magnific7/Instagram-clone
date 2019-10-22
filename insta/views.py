@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     images = Image.objects.all()
     image_comments = Image.get_images()
-    return render(request, 'all_images/home.html', {"images":images})
+    return render(request, 'all_images/home.html', {"images":images,"image_comments":image_comments})
 
 def search_results(request):
     if 'user' in request.GET and request.GET['user']:
@@ -29,8 +29,8 @@ def image(request,image_id):
     except DoesNotExist:
         raise Http404()
     current_user = request.user
-    comments = Comments.objects.filter(id = image_id)
-    # print (comments)
+    comments = Comments.objects.filter(comment_image = image)
+    print(comments)
     return render(request,"all_images/image.html", {"image":image,'comments':comments})
 
 @login_required(login_url='/accounts/login/')
