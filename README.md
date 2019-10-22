@@ -27,3 +27,4 @@ Admin should:
 | :---------------- | :---------------: | ------------------: |
 | Admin Authentication | **/admin/** | Access Admin dashboard |
 | Display all images | **thome page** | Clickable links to open any images page |
+| To search  | **Enter text in search bar** | Users can search other users|
