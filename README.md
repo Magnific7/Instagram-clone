@@ -28,3 +28,5 @@ Admin should:
 | Admin Authentication | **/admin/** | Access Admin dashboard |
 | Display all images | **thome page** | Clickable links to open any images page |
 | To search  | **Enter text in search bar** | Users can search other users|
+| Display single images on click | **On  click** | All details should be viewed|
+| User can add a post | **on add post icon** | Adds a new post|
