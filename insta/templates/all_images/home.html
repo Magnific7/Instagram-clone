@@ -5,12 +5,11 @@
         <div class='container'>
                
                 <div class="row">
-                        <div class="col-md-6">
+                        <div class="w3-card-6" style="width:56%;margin-left: 30%">
                         {% for image in images %}
-                                <p>{{image.image_name}}</p>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                        <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive" alt="Image"></a>
-                                      </div>
+                                
+                                        <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive" alt="Image" style="width:100%;margin-left: 0%;margin-top:15px;"></a>
+                                     
 
                                 {% for comment in image.comment_set.all%}
                                         <p>{{comment.comment}}</p>
