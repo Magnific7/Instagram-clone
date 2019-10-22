@@ -26,4 +26,4 @@ Admin should:
 | Behaviour | Input | Output |
 | :---------------- | :---------------: | ------------------: |
 | Admin Authentication | **/admin/** | Access Admin dashboard |
-| Display all images | **the gallery** | Clickable links to open any images page |
+| Display all images | **thome page** | Clickable links to open any images page |
