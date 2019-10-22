@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
-    images = Image.objects.all()
+    images = Image.objects.order_by('pub_date').reverse().all()
     image_comments = Image.get_images()
     return render(request, 'all_images/home.html', {"images":images,"image_comments":image_comments})
 
@@ -126,6 +126,6 @@ def comment_show(request,image_id):
 def likes(request,id):
     likes=1
     image = Image.objects.get(id=id)
-    image.likes = image.likes+1
+    image.like = image.like+1
     image.save()    
-    return redirect("/")
+    return redirect("home")
