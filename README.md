@@ -30,3 +30,14 @@ Admin should:
 | To search  | **Enter text in search bar** | Users can search other users|
 | Display single images on click | **On  click** | All details should be viewed|
 | User can add a post | **on add post icon** | Adds a new post|
+
+## SetUp / Installation Requirements
+### Prerequisites
+* python3.6
+* pip
+* virtualenv
+* Requirements.txt
+## Testing the Application
+* To run the tests for the class files:
+
+        $ python3.6 manage.py test 
